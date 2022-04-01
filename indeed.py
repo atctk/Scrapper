@@ -36,3 +36,9 @@ def extract_indeed_jobs(last_page):
       job = extract_job(result)
       jobs.append(job)
     return jobs
+
+def get_jobs():
+  last_page = extract_indeed_pages()
+
+  jobs = extract_indeed_jobs(last_page)
+  return jobs
