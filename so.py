@@ -10,6 +10,7 @@ def get_last_page():
   pages = soup.find("div",{"class":"s-pagination"}).find_all('a')
   last_page = pages[-2].get_text(strip=True)
   return int(last_page)
+  
 
 def extract_job(html):
   title = html.find("div",{"class":"flex--item fl1 text mb0"}).find("h2").find("a")
@@ -29,11 +30,10 @@ def extract_jobs(last_page):
   for page in range(last_page):
     result = requests.get(f"{URL}&pg={page+1}")
     soup = BeautifulSoup(result.text,"html.parser")
-    results = soup.find_all("div",{"class":"-job"})
+    results = soup.find_all("div",{"class":"dismiss-trigger js-dismiss-company ps-absolute r12 fc-black-500 c-pointer"})
     for result in results:
-      job = extract_job(result)
-      jobs.append(job)
-    return jobs
+      print(result["data-id"])
+    
   
   
 
