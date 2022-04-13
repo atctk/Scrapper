@@ -13,8 +13,7 @@ def get_last_page():
   
 
 def extract_job(html):
-  if html != None:
-    company = html.find("a",{"class":"s-link"}).string
+  company = html.find("div",{"class":"flex--item fl1"})
   print(company)
   
   
